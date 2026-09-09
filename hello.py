@@ -31,9 +31,25 @@ followers -= 10
 # Activity 4: Interactive profile creator
 ## Currently the program displays hard coded values. Let’s make it more interactive and personalized
 
+#username = input("Enter Username: ")
+#age = input("Enter Age: ")
+#category = input("Enter Content Category: ")
+
+#print("\nInstagram Profile")
+#print("====================")
+#print("Username:", username)
+#print("Age:", age)
+#print("Category:", category)
+
+
+# Activity 5: Something fun to think about
+
 username = input("Enter Username: ")
-age = input("Enter Age: ")
+age = int(input("Enter Age: "))
 category = input("Enter Content Category: ")
+
+if age>40 and category == "fun":
+    print("You are old what is fun for you??")
 
 print("\nInstagram Profile")
 print("====================")
