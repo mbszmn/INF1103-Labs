@@ -1,3 +1,22 @@
+# Persistence: read the information previously saved in the inventory file
+import os
+FILENAME = "inventory.txt"
+
+def load_inventory():
+
+    if not os.path.exists(FILENAME):
+        return 0
+
+    try:
+        with open(FILENAME, "r") as f:
+            lines = [line.strip() for line in f.readlines() if line.strip()]
+            if not lines:
+                return 0
+            return int(lines[0])
+    except (ValueError, FileNotFoundError):
+        return 0
+
+
 # Define a function to handle input from the user, validate it and produce a clean result.
 def get_valid_input():
 
@@ -40,14 +59,14 @@ def generate_report(total_units, failed_attempts):
     
 # Write the main execution code that uses the above functions to process user input and generate a report.
 def main():
-    inventory_total = 0
+    # Requirement 1: Load persisted total on startup
+    inventory_total = load_inventory()
     failed_attempts = 0
     processed_deliveries = 0
 
+    print(f"Loaded existing inventory total: {inventory_total}\n")
 
-# Continuous loop asking user to enter a stock quantity until quit
     while True:
-
         response = get_valid_input()
 
         if response == "quit":
@@ -69,7 +88,6 @@ def main():
                 print("Overstock Alert: Total inventory exceeds 500 units. Terminating audit.")
                 break
 
-    # Print final report
     generate_report(inventory_total, failed_attempts)
 
 if __name__ == "__main__":
