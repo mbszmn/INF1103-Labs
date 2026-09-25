@@ -1,21 +1,25 @@
-# Persistence: read the information previously saved in the inventory file
 import os
+
 FILENAME = "inventory.txt"
 
 def load_inventory():
-
     if not os.path.exists(FILENAME):
-        return 0
+        return 0, []
 
     try:
         with open(FILENAME, "r") as f:
             lines = [line.strip() for line in f.readlines() if line.strip()]
             if not lines:
-                return 0
-            return int(lines[0])
+                return 0, []
+            
+            inventory_total = int(lines[0])
+            history = []
+            if len(lines) > 1 and lines[1]:
+                history = [int(val) for val in lines[1].split(",")]
+                
+            return inventory_total, history
     except (ValueError, FileNotFoundError):
-        return 0
-
+        return 0, []
 
 # Define a function to handle input from the user, validate it and produce a clean result.
 def get_valid_input():
@@ -56,15 +60,14 @@ def generate_report(total_units, failed_attempts):
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 
-    
-# Write the main execution code that uses the above functions to process user input and generate a report.
+
 def main():
-    # Requirement 1: Load persisted total on startup
-    inventory_total = load_inventory()
+    inventory_total, transaction_history = load_inventory()
     failed_attempts = 0
     processed_deliveries = 0
 
-    print(f"Loaded existing inventory total: {inventory_total}\n")
+    print(f"Loaded existing inventory total: {inventory_total}")
+    print(f"Loaded transaction history: {transaction_history}\n")
 
     while True:
         response = get_valid_input()
@@ -78,6 +81,7 @@ def main():
 
         else:
             inventory_total = process_delivery(inventory_total, response)
+            transaction_history.append(response)  # Appending to memory list
             tax = calculate_tax(response)
             processed_deliveries += 1
 
