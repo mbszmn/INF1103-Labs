@@ -94,18 +94,19 @@ def main():
     print("==================================================")
     print("INVENTORY MANAGEMENT SYSTEM")
     print("==================================================\n")
+
     load_inventory()
 
-    while True:
-        print("\n----------- MENU -----------")
-        print("1. Display All Products")
-        print("2. Add Product")
-        print("3. Update Stock")
-        print("4. Search Product")
-        print("5. Save Inventory")
-        print("6. Exit")
-        print("----------------------------\n")
+    print("\n----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------\n")
 
+    while True:
         option = input("Enter option: ")
 
         if option == '1':
