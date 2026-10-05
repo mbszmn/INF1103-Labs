@@ -71,3 +71,18 @@ def search_product():
             print("--------------------------------------------------")
             return
     print("\nProduct not found.")
+
+# 4. Build a Menu System
+def save_inventory(is_exit=False):
+    if is_exit:
+        print("\nSaving inventory before exit...")
+    else:
+        print("\nSaving inventory...")
+        
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+        
+    if is_exit:
+        print("Inventory saved successfully.")
+    else:
+        print("Inventory saved successfully to inventory.json.")
