@@ -86,3 +86,39 @@ def save_inventory(is_exit=False):
         print("Inventory saved successfully.")
     else:
         print("Inventory saved successfully to inventory.json.")
+
+# MAIN
+def main():
+    print("INVENTORY MANAGEMENT SYSTEM")
+    load_inventory()
+
+    while True:
+        print("\nMENU")
+        print("1. Display All Products")
+        print("2. Add Product")
+        print("3. Update Stock")
+        print("4. Search Product")
+        print("5. Save Inventory")
+        print("6. Exit")
+        option = input("Enter option: ")
+
+        if option == '1':
+            display_all()
+        elif option == '2':
+            add_product()
+        elif option == '3':
+            update_stock()
+        elif option == '4':
+            search_product()
+        elif option == '5':
+            save_inventory()
+        elif option == '6':
+            save_inventory(is_exit=True)
+            print("\nThank you for using Inventory Management System.")
+            print("Program terminated.")
+            break
+        else:
+            print("\nInvalid option.")
+
+if __name__ == "__main__":
+    main()
