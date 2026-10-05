@@ -3,6 +3,22 @@ import os
 
 inventory = []
 
+# 3. Data Persistence
+def load_inventory():
+    global inventory
+    if os.path.exists("inventory.json"):
+        print("inventory.json found.")
+        with open("inventory.json", "r") as file:
+            inventory = json.load(file)
+        print("Inventory loaded successfully.")
+    else:
+        # Load the three products cuz json doesnt exist yet
+        inventory = [
+            {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
+            {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
+            {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
+        ]
+
 # 1. Data Representation
 # Represent inventory items using dictionaries and store at least three products in a list.
 
