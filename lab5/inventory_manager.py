@@ -13,4 +13,13 @@ def display_all():
     for item in inventory:
         print(f"ID: {item['id']} | Name: {item['name']} | Price: ${item['price']:.2f} | Stock: {item['stock']}")
 
-        
+def add_product():
+    print("\nAdd New Product")
+    p_id = input("Product ID: ")
+    name = input("Product Name: ")
+    price = float(input("Price: "))
+    stock = int(input("Stock Quantity: "))
+    inventory.append({"id": p_id, "name": name, "price": price, "stock": stock})
+    print("Product added successfully!")       
+
+    
