@@ -1,3 +1,6 @@
+import json
+import os
+
 # 1. Data Representation
 # Represent inventory items using dictionaries and store at least three products in a list.
 
