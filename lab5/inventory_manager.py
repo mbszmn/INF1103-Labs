@@ -31,8 +31,10 @@ def load_inventory():
 # Data Manipulation
 def display_all():
     print("\nCurrent Inventory")
+    print("--------------------------------------------------")
     for item in inventory:
         print(f"ID: {item['id']} | Name: {item['name']} | Price: ${item['price']:.2f} | Stock: {item['stock']}")
+    print("--------------------------------------------------")
 
 def add_product():
     print("\nAdd New Product")
@@ -41,7 +43,7 @@ def add_product():
     price = float(input("Price: "))
     stock = int(input("Stock Quantity: "))
     inventory.append({"id": p_id, "name": name, "price": price, "stock": stock})
-    print("Product added successfully!")       
+    print("\nProduct added successfully!")       
 
 def update_stock():
     print("\nUpdate Stock")
@@ -89,17 +91,21 @@ def save_inventory(is_exit=False):
 
 # MAIN
 def main():
+    print("==================================================")
     print("INVENTORY MANAGEMENT SYSTEM")
+    print("==================================================\n")
     load_inventory()
 
     while True:
-        print("\nMENU")
+        print("\n----------- MENU -----------")
         print("1. Display All Products")
         print("2. Add Product")
         print("3. Update Stock")
         print("4. Search Product")
         print("5. Save Inventory")
         print("6. Exit")
+        print("----------------------------\n")
+
         option = input("Enter option: ")
 
         if option == '1':
