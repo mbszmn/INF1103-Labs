@@ -7,3 +7,10 @@ inventory = [
     {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
 ]
 
+# Data Manipulation
+def display_all():
+    print("\nCurrent Inventory")
+    for item in inventory:
+        print(f"ID: {item['id']} | Name: {item['name']} | Price: ${item['price']:.2f} | Stock: {item['stock']}")
+
+        
