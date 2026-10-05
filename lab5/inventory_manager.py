@@ -34,7 +34,7 @@ def display_all():
     print("--------------------------------------------------")
     for item in inventory:
         print(f"ID: {item['id']} | Name: {item['name']} | Price: ${item['price']:.2f} | Stock: {item['stock']}")
-    print("--------------------------------------------------")
+    print("--------------------------------------------------\n")
 
 def add_product():
     print("\nAdd New Product")
@@ -43,7 +43,7 @@ def add_product():
     price = float(input("Price: "))
     stock = int(input("Stock Quantity: "))
     inventory.append({"id": p_id, "name": name, "price": price, "stock": stock})
-    print("\nProduct added successfully!")       
+    print("\nProduct added successfully!\n")       
 
 def update_stock():
     print("\nUpdate Stock")
@@ -55,7 +55,7 @@ def update_stock():
             print(f"Current Stock: {item['stock']}\n")
             new_stock = int(input("New Stock Quantity: "))
             item['stock'] = new_stock
-            print("\nStock updated successfully!")
+            print("\nStock updated successfully!\n")
             return
     print("\nProduct not found.") 
 
@@ -70,9 +70,9 @@ def search_product():
             print(f"Name: {item['name']}")
             print(f"Price: ${item['price']:.2f}")
             print(f"Stock: {item['stock']}")
-            print("--------------------------------------------------")
+            print("--------------------------------------------------\n")
             return
-    print("\nProduct not found.")
+    print("\nProduct not found.\n")
 
 # 4. Build a Menu System
 def save_inventory(is_exit=False):
@@ -87,7 +87,7 @@ def save_inventory(is_exit=False):
     if is_exit:
         print("Inventory saved successfully.")
     else:
-        print("Inventory saved successfully to inventory.json.")
+        print("Inventory saved successfully to inventory.json.\n")
 
 # MAIN
 def main():
