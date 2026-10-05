@@ -22,4 +22,16 @@ def add_product():
     inventory.append({"id": p_id, "name": name, "price": price, "stock": stock})
     print("Product added successfully!")       
 
-    
+def update_stock():
+    print("\nUpdate Stock")
+    p_id = input("Enter Product ID: ")
+    for item in inventory:
+        if item['id'] == p_id:
+            print("\nProduct Found:")
+            print(f"Name: {item['name']}")
+            print(f"Current Stock: {item['stock']}\n")
+            new_stock = int(input("New Stock Quantity: "))
+            item['stock'] = new_stock
+            print("\nStock updated successfully!")
+            return
+    print("\nProduct not found.") 
