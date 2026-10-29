@@ -1,0 +1,58 @@
+[
+    {
+        "ticket_id": "0001",
+        "username": "Muhaini",
+        "device": "Mac",
+        "title": "Network issue",
+        "description": "unable to connect to school wifi",
+        "steps_attempted": "restarted my laptop",
+        "user_priority": "High",
+        "error_message": "",
+        "ai_analysis": {
+            "category": "Network",
+            "priority": "Medium",
+            "confidence": 0.0,
+            "summary": "unable to connect to school wifi",
+            "affected_system": "Unknown",
+            "security_related": false,
+            "requires_escalation": false,
+            "requires_manual_review": true,
+            "troubleshooting": [],
+            "action": "MANUAL_REVIEW"
+        },
+        "final_priority": "Medium",
+        "status": "Open",
+        "escalated": false,
+        "requires_manual_review": true,
+        "created_at": "2026-10-02T03:19:00",
+        "updated_at": "2026-10-02T03:19:00"
+    },
+    {
+        "ticket_id": "0002",
+        "username": "Sam",
+        "device": "phone",
+        "title": "cannot access internet",
+        "description": "school wifi doesnt work",
+        "steps_attempted": "restarted my phone",
+        "user_priority": "Critical",
+        "error_message": "unable to connect",
+        "ai_analysis": {
+            "category": "Network",
+            "priority": "Medium",
+            "confidence": 0.0,
+            "summary": "school wifi doesnt work",
+            "affected_system": "Unknown",
+            "security_related": false,
+            "requires_escalation": false,
+            "requires_manual_review": true,
+            "troubleshooting": [],
+            "action": "MANUAL_REVIEW"
+        },
+        "final_priority": "Medium",
+        "status": "Open",
+        "escalated": false,
+        "requires_manual_review": true,
+        "created_at": "2026-10-02T03:22:19",
+        "updated_at": "2026-10-02T03:22:19"
+    }
+]
