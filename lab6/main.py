@@ -28,15 +28,9 @@ def save_inventory(inventory: Inventory) -> None:
 
 def main():
     inventory = Inventory()
-
-def main():
-    inventory = Inventory() 
-
-    product1 = Product("P001", "Laptop", 1200.00, 15) 
-    product2 = Product("P002", "Mouse", 25.50, 40)
-
-    inventory.add_product(product1)
-    inventory.add_product(product2)
+    
+    # Load previously saved products from json
+    load_inventory(inventory)
 
     while True:
         print("\n=== Inventory Management System ===")

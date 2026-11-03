@@ -16,8 +16,8 @@ class Inventory:
     def search_product(self, product_id: str) -> Product:
         return self._products.get(product_id, None)
 
-    # Method 3
-    def display_all():
+    # Method 3 
+    def display_all(self) -> None:
         if not self._products:
             print("No products currently in inventory.")
             return
@@ -25,5 +25,5 @@ class Inventory:
         for product in self._products.values():
             product.display_information()
 
-    def get_all_products() -> list[Product]:
+    def get_all_products(self) -> list[Product]:
         return list(self._products.values())
