@@ -1,6 +1,6 @@
 import json
 import os
-from product import Product
+from product import PhysicalProduct, DigitalProduct
 from inventory import Inventory
 
 DATA_FILE = "inventory.json"
@@ -12,7 +12,12 @@ def load_inventory(inventory: Inventory) -> None:
         with open(DATA_FILE, "r") as f:
             data = json.load(f)
             for item in data:
-                prod = Product(item["product_id"], item["name"], item["price"], item["stock"])
+                if item.get("type") == "physical":
+                    prod = PhysicalProduct(item["product_id"], item["name"], item["price"], item["stock"], item["weight"])
+                elif item.get("type") == "digital":
+                    prod = DigitalProduct(item["product_id"], item["name"], item["price"], item["stock"], item["download_size"])
+                else:
+                    continue 
                 inventory.add_product(prod)
     except Exception as e:
         print(f"Error loading inventory file: {e}")
@@ -28,8 +33,6 @@ def save_inventory(inventory: Inventory) -> None:
 
 def main():
     inventory = Inventory()
-    
-    # Load previously saved products from json
     load_inventory(inventory)
 
     while True:
@@ -47,12 +50,25 @@ def main():
             inventory.display_all()
 
         elif choice == "2":
+            ptype = input("Enter product type (1 for Physical, 2 for Digital): ").strip()
+            if ptype not in ["1", "2"]:
+                print("Invalid product type. Returning to menu.")
+                continue
+
             pid = input("Enter Product ID: ").strip()
             name = input("Enter Product Name: ").strip()
             try:
                 price = float(input("Enter Price: "))
                 stock = int(input("Enter Stock Quantity: "))
-                new_prod = Product(pid, name, price, stock)
+                
+                # Prompt for subclass attributes
+                if ptype == "1":
+                    weight = float(input("Enter Weight (kg): "))
+                    new_prod = PhysicalProduct(pid, name, price, stock, weight)
+                elif ptype == "2":
+                    size = float(input("Enter Download Size (MB): "))
+                    new_prod = DigitalProduct(pid, name, price, stock, size)
+
                 if inventory.add_product(new_prod):
                     print(f"Product '{name}' added successfully.")
             except ValueError:
@@ -76,6 +92,10 @@ def main():
             prod = inventory.search_product(pid)
             if prod:
                 prod.display_information()
+                print(f"Fulfillment: {prod.get_fulfilment_info()}")
+                # Demonstrate interface capability safely
+                if hasattr(prod, 'calculate_shipping_cost'):
+                    print(f"Shipping Cost: ${prod.calculate_shipping_cost():.2f}")
             else:
                 print("Product not found.")
 
