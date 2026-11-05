@@ -17,7 +17,7 @@ class Product(ABC):
 
     # Method 2: display information 
     def display_information(self):
-        print(f"ID: {self._product_id} | Name: {self._name:<15} | Price: ${self._price:>7.2f} | Stock: {self._stock:>4}, end=""")
+        print(f"ID: {self._product_id} | Name: {self._name:<15} | Price: ${self._price:>7.2f} | Stock: {self._stock:>4}", end="")
 
     # add abstract method
     ## fulfilment abstract method
