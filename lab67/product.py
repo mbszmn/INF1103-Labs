@@ -9,15 +9,15 @@ class Product(ABC):
         self._stock = int(stock)
 
     # Method 1: update stock
-    def update_stock(self, quantity: int) 
+    def update_stock(self, quantity: int):
         if self._stock + quantity < 0:
             print("Error: Stock level cannot fall below zero.")
         else:
             self._stock += quantity
 
     # Method 2: display information 
-    def display_information(self) 
-        print(f"ID: {self._product_id} | Name: {self._name:<15} | Price: ${self._price:>7.2f} | Stock: {self._stock:>4}, end="")
+    def display_information(self):
+        print(f"ID: {self._product_id} | Name: {self._name:<15} | Price: ${self._price:>7.2f} | Stock: {self._stock:>4}, end=""")
 
     # add abstract method
     ## fulfilment abstract method
@@ -48,4 +48,3 @@ class CanBeShipped(ABC):
     @abstractmethod
     def calculate_shipping_cost(self) -> float:
         pass
-

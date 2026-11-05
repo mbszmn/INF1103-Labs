@@ -1,3 +1,5 @@
+from product import Product
+
 class DigitalProduct(Product):
     def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float):
         super().__init__(product_id, name, price, stock)

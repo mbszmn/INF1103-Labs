@@ -1,3 +1,6 @@
+from product import Product
+from main import CanBeShipped
+
 class PhysicalProduct(Product, CanBeShipped):
     def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float):
         super().__init__(product_id, name, price, stock)

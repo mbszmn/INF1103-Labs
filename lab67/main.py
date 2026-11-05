@@ -1,6 +1,8 @@
 import json
 import os
-from product import PhysicalProduct, DigitalProduct
+from product import Product
+from PhysicalProduct import PhysicalProduct  
+from DigitalProduct import DigitalProduct   
 from inventory import Inventory
 
 DATA_FILE = "inventory.json"
@@ -61,7 +63,6 @@ def main():
                 price = float(input("Enter Price: "))
                 stock = int(input("Enter Stock Quantity: "))
                 
-                # Prompt for subclass attributes
                 if ptype == "1":
                     weight = float(input("Enter Weight (kg): "))
                     new_prod = PhysicalProduct(pid, name, price, stock, weight)
@@ -92,8 +93,9 @@ def main():
             prod = inventory.search_product(pid)
             if prod:
                 prod.display_information()
-                print(f"Fulfillment: {prod.get_fulfilment_info()}")
-                # Demonstrate interface capability safely
+                # Print abstract fulfillment method
+                print(f"\nFulfillment: {prod.get_fulfilment_info()}")
+                # Print interface calculation if available
                 if hasattr(prod, 'calculate_shipping_cost'):
                     print(f"Shipping Cost: ${prod.calculate_shipping_cost():.2f}")
             else:
