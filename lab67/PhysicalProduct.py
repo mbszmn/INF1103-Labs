@@ -1,5 +1,4 @@
-from product import Product
-from main import CanBeShipped
+from product import Product, CanBeShipped
 
 class PhysicalProduct(Product, CanBeShipped):
     def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float):
