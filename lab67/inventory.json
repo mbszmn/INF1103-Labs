@@ -1,14 +1,18 @@
 [
     {
-        "product_id": "P005",
-        "name": "Keyboard",
-        "price": 45.0,
-        "stock": 5
+        "type": "physical",
+        "product_id": "P101",
+        "name": "Gibson Electric Guitar",
+        "price": 999.99,
+        "stock": 5,
+        "weight": 3.4
     },
     {
-        "product_id": "P006",
-        "name": "Laptop",
-        "price": 700.0,
-        "stock": 20
+        "type": "digital",
+        "product_id": "P102",
+        "name": "Amp Simulator Plugin",
+        "price": 214.5,
+        "stock": 100,
+        "download_size": 4500.0
     }
 ]

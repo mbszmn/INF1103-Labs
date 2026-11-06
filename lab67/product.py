@@ -43,8 +43,3 @@ class Product(ABC):
     def get_stock(self) -> int:
         return self._stock
 
-# Interface
-class CanBeShipped(ABC):
-    @abstractmethod
-    def calculate_shipping_cost(self) -> float:
-        pass
