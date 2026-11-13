@@ -8,19 +8,7 @@ class DigitalProduct(Product):
 
     def display_information(self) -> None:
         super().display_information()
-        print(f" | Size: {self._download_size}MB")
+        print(f"Digital Attributes: Size {self._download_size}MB")
 
     def get_fulfilment_info(self) -> str:
-        return f"Digital Delivery. Link sent via email."
-
-    def to_dict(self) -> dict:
-        return {
-            "type": "digital",
-            "product_id": self._product_id,
-            "name": self._name,
-            "price": self._price,
-            "stock": self._stock,
-            "download_size": self._download_size
-        }
-
-    
+        return f"Digital Delivery: Download size is {self._download_size}MB. Link sent via email."

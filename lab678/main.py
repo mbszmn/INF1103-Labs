@@ -32,9 +32,9 @@ def main():
     print("=== Testing Composition (Orders) ===")
     order1.display_order()
 
-    #4. Test Polymorphism & LSP. Treating all child classes as generic product class
+    # 4. Test Polymorphism & LSP 
     print("\n=== Testing Polymorphism & LSP ===")
-    for product in inventory_a.products:
+    for product in inventory_a._products:
         show_product_details(product)
 
 if __name__ == "__main__":
