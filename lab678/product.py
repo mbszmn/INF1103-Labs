@@ -7,7 +7,7 @@ class Product(ABC):
         self.name: str = name
         self.price: float = price
         self.stock_quantity: int = stock_quantity
-        self.supplier: Supplier = supplier  # Association betw product and supplier
+        self.supplier: Supplier = supplier  
 
     @abstractmethod
     def get_fulfilment_info(self) -> str:
@@ -17,19 +17,3 @@ class Product(ABC):
         print(f"ID: {self.product_id} | Name: {self.name} | Price: ${self.price:.2f} | Stock: {self.stock_quantity}")
         print("Supplier Info: ", end="")
         self.supplier.display_information()
-
-class PhysicalProduct(Product):
-    def __init__(self, product_id: str, name: str, price: float, stock_quantity: int, supplier: Supplier, weight: float):
-        super().__init__(product_id, name, price, stock_quantity, supplier)
-        self.weight: float = weight
-
-    def get_fulfilment_info(self) -> str:
-        return f"Physical Delivery: Item weighs {self.weight}kg. Ships in standard packaging."
-
-class DigitalProduct(Product):
-    def __init__(self, product_id: str, name: str, price: float, stock_quantity: int, supplier: Supplier, download_size: float):
-        super().__init__(product_id, name, price, stock_quantity, supplier)
-        self.download_size: float = download_size
-
-    def get_fulfilment_info(self) -> str:
-        return f"Digital Delivery: Download size is {self.download_size}MB. Link sent via email."
