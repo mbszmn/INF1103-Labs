@@ -1,23 +1,20 @@
 from product import Product
 
+# Holds a collection of Product objects
 class Inventory:
     def __init__(self):
-        self._products: list[Product] = []
+        # Store products keyed by their product_id
+        self.products: dict[str, Product] = {}
 
     def add_product(self, product: Product) -> None:
-        self._products.append(product)
+        # Add or overwrite a product in the inventory
+        self.products[product.product_id] = product
 
-    def remove_product(self, product_id: str) -> None:
-        product = self.find_product(product_id)
-        if product:
-            self._products.remove(product)
+    def get_product(self, product_id: str) -> Product | None:
+        # Look up a product by ID
+        return self.products.get(product_id)
 
-    def find_product(self, product_id: str) -> Product | None:
-        for product in self._products:
-            if product._product_id == product_id:
-                return product
-        return None
-
-    def display_all_products(self) -> None:
-        for product in self._products:
+    def display_all(self) -> None:
+        # Display every product currently in the inventory
+        for product in self.products.values():
             product.display_information()

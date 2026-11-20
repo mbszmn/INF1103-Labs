@@ -1,41 +1,46 @@
 from supplier import Supplier
-from product import Product
-from PhysicalProduct import PhysicalProduct
-from DigitalProduct import DigitalProduct
+from product import ProductFactory
 from inventory import Inventory
 from order import Order
+from discount import BulkDiscount, PercentageDiscount, StudentDiscount
+from utils import load_products, get_positive_float
 
-# tests(LSP) and Polymorphism
-def show_product_details(product: Product) -> None:
-    product.display_information()
-    print(f"Fulfillment: {product.get_fulfilment_info()}")
-    print("-" * 40)
+def main() -> None:
+    # Create a default supplier
+    supplier = Supplier("SUP01", "TechDistributors", "orders@techdist.com")
+    inventory = Inventory()
 
-def main():
-    #1. Test Association. Supplier & Product can exist own their own
-    tech_corp = Supplier("S001", "TechCorp", "sales@techcorp.com")
-    book_dist = Supplier("S002", "BookDist", "orders@bookdist.com")
+    # Load products from CSV using ProductFactory and exception handling
+    print("--- Loading Products from CSV ---")
+    load_products("products.csv", inventory, supplier)
 
-    phys_prod = PhysicalProduct("P001", "Gaming Mouse", 49.99, 100, tech_corp, 0.2)
-    digi_prod = DigitalProduct("D001", "E-Book", 19.99, 999, book_dist, 5.0)
+    # Display loaded products
+    print("\n--- Current Inventory ---")
+    inventory.display_all()
 
-    #2. Test Aggregation. Inventory holds Products, but doesn't own their lifecycle
-    inventory_a = Inventory()
-    inventory_a.add_product(phys_prod)
-    inventory_a.add_product(digi_prod)
-    
-    #3. Test Composition. Order creates and owns OrderLines
-    order1 = Order("ORD-999")
-    order1.add_order_line(phys_prod, 2)
-    order1.add_order_line(digi_prod, 1)
-    
-    print("=== Testing Composition (Orders) ===")
-    order1.display_order()
+    # Demonstrate creating a product through ProductFactory
+    print("\n--- Creating New Product via Factory ---")
+    keyboard = ProductFactory.create("physical", "P004", "Mechanical Keyboard", 125.00, 15, supplier)
+    inventory.add_product(keyboard)
 
-    # 4. Test Polymorphism & LSP 
-    print("\n=== Testing Polymorphism & LSP ===")
-    for product in inventory_a._products:
-        show_product_details(product)
+    # Demonstrate Strategy pattern on an Order totaling 250.00
+    print("\n--- Testing Discount Strategies ---")
+    order = Order("ORD-1001", BulkDiscount(200, 20))
+    order.add_line(keyboard, 2)  # 2 x 125.00 = 250.00
+    print(f"Total with BulkDiscount(200, 20): ${order.calculate_total():.2f}")
+
+    # Swap strategy at runtime to PercentageDiscount(10)
+    order.set_discount(PercentageDiscount(10))
+    print(f"Total after set_discount(PercentageDiscount(10)): ${order.calculate_total():.2f}")
+
+    # Swap strategy to StudentDiscount (5% off)
+    order.set_discount(StudentDiscount())
+    print(f"Total after set_discount(StudentDiscount()): ${order.calculate_total():.2f}")
+
+    # Demonstrate interactive positive float validation
+    print("\n--- Testing Input Validation ---")
+    custom_price = get_positive_float("Enter a positive price to test validation: ")
+    print(f"Accepted valid price: ${custom_price:.2f}")
 
 if __name__ == "__main__":
     main()
